@@ -9,7 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a160418047_advweek4.R
-import com.example.a160418047_advweek4.viewmodel.ListViewModel
+
+import com.example.a160418047_advweek4.viewmodel.ListViewModell
 import kotlinx.android.synthetic.main.fragment_student_list.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,15 +24,23 @@ import kotlinx.android.synthetic.main.fragment_student_list.*
  */
 class StudentListFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private lateinit var viewModel:ListViewModel
+    private lateinit var viewModel:ListViewModell
     private val studentListAdapter = StudentListAdapter(arrayListOf())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ListViewModell::class.java)
         viewModel.refresh()
         recView.layoutManager = LinearLayoutManager(context)
         recView.adapter = studentListAdapter
         observeViewModel()
+        refreshLayout.setOnRefreshListener {
+            recView.visibility = View.GONE
+            txtError.visibility = View.GONE
+            progressLoad.visibility = View.VISIBLE
+            viewModel.refresh()
+            refreshLayout.isRefreshing = false
+        }
+
     }
     fun observeViewModel() {
         viewModel.studentsLD.observe(viewLifecycleOwner, Observer {

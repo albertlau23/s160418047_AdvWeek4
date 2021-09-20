@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.a160418047_advweek4.R
+import com.example.a160418047_advweek4.util.loadImage
 import com.example.a160418047_advweek4.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_student_detail.view.*
 
@@ -28,14 +29,19 @@ class StudentDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-        viewModel.fetch()
-        viewModel.studentLD.observe(viewLifecycleOwner, Observer {
-            view.txtName.setText(it.name)
-            view.txtID.setText(it.id)
-            view.txtBod.setText(it.bod)
-            view.txtPhone.setText(it.phone)
-        })
+        arguments?.let {
+            val sid=StudentDetailFragmentArgs.fromBundle(requireArguments()).studentID
+            viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+            viewModel.fetch(sid)
+            viewModel.studentLD.observe(viewLifecycleOwner, Observer {
+                view.txtName.setText(it.name)
+                view.txtID.setText(sid)
+                view.txtBod.setText(it.bod)
+                view.txtPhone.setText(it.phone)
+                view.imageViewDetail.loadImage(it.photourl, view.detailProgress)
+
+            })
+        }
     }
 
     override fun onCreateView(
