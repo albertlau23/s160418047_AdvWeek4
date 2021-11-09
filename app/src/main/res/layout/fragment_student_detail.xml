@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.StudentDetailFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="student"
+            type="com.example.a160418047_advweek4.model.Student" />
+        <variable
+            name="listerner"
+            type="com.example.a160418047_advweek4.view.ButtonNotifLClickistener" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,10 +19,12 @@
             android:id="@+id/imageViewDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="78dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+
+
             tools:src="@tools:sample/avatars" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -35,7 +42,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtID"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@{student.id}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -53,7 +61,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@{student.name}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +80,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtBod"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@{student.bod}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -89,7 +99,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPhone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@{student.phone}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -111,5 +122,18 @@
             app:layout_constraintEnd_toEndOf="@+id/imageViewDetail"
             app:layout_constraintStart_toStartOf="@+id/imageViewDetail"
             app:layout_constraintTop_toTopOf="@+id/imageViewDetail" />
+
+        <Button
+            android:id="@+id/btnNotif"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:text="Create Notification"
+            android:tag="@{student.name}"
+            android:onClick="@{listerner::onButtonNotifClick}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout6" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</layout>

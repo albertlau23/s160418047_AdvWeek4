@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".view.StudentListItemFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="student"
+            type="com.example.a160418047_advweek4.model.Student" />
+        <variable
+            name="listerner"
+            type="com.example.a160418047_advweek4.view.ButtonDetailClickListener" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -20,7 +25,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -30,6 +35,8 @@
                     android:foregroundGravity="center"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:imageUrl="@{student.photourl}"
+                    android:progressBar="@{progressBar}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
@@ -42,6 +49,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="240dp"
                     android:layout_marginEnd="24dp"
+                    android:onClick="@{listerner::onButtonDetailClick}"
+                    android:tag="@{student.id}"
                     android:text="Detail"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
-                    android:text="Student Name"
+                    android:text="@{student.name}"
                     android:textSize="34sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
                     app:layout_constraintTop_toBottomOf="@+id/txtIdCard" />
@@ -65,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="40dp"
-                    android:text="ID"
+                    android:text="@{student.id}"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -82,4 +91,4 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</layout>
