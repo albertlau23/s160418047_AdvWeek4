@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.a160418047_advweek4.MainActivity
 import com.example.a160418047_advweek4.R
 import com.example.a160418047_advweek4.databinding.FragmentStudentDetailBinding
 import com.example.a160418047_advweek4.util.loadImage

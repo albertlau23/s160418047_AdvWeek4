@@ -1,9 +1,10 @@
-package com.example.a160418047_advweek4
+package com.example.a160418047_advweek4.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.a160418047_advweek4.R
 import com.example.a160418047_advweek4.util.createNotificationChannel
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +27,8 @@ class MainActivity : AppCompatActivity() {
             val channelId =
                 "${instance?.packageName}-${instance?.getString(R.string.app_name)}"
             val notificationBuilder =
-                NotificationCompat.Builder(instance!!.applicationContext,
+                NotificationCompat.Builder(
+                    instance!!.applicationContext,
                     channelId).apply {
                     setSmallIcon(icon)
                     setContentTitle(title)
